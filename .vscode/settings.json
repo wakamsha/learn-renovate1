@@ -1,0 +1,10 @@
+{
+  "cSpell.words": [
+    "wakamsha"
+  ],
+  "editor.formatOnSave": true,
+  "files.associations": {
+    // このファイルを JSON with Comments 認識させる
+    "**/.vscode/*.json": "jsonc"
+  }
+}
