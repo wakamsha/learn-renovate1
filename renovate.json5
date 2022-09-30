@@ -1,0 +1,29 @@
+{
+  enabled: false,
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:base"],
+  timezone: "Asia/Tokyo",
+  separateMinorPatch: true,
+  major: {
+    stabilityDays: 7,
+  },
+  minor: {
+    automerge: true,
+    stabilityDays: 3,
+  },
+  patch: {
+    automerge: true,
+    stabilityDays: 2,
+  },
+  constraints: {
+    node: "/^[0-9]+[24680]\\.[0-9]+\\.0$/",
+  },
+
+  packageRules: [
+    {
+      groupName: "Jest",
+      matchPackagePatterns: ["jest"],
+      enabled: false,
+    },
+  ],
+}
