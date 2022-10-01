@@ -37,8 +37,8 @@ commands:
           command: npm run test
 
 jobs:
-  test:
-    executer: default
+  my_test:
+    executor: default
     steps:
       - checkout
       - restore_npm
@@ -47,6 +47,6 @@ jobs:
       - unit_test
 
 workflows:
-  check:
+  my_check:
     jobs:
-      - test
+      - my_test
