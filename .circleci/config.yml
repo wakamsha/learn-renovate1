@@ -1,0 +1,59 @@
+version: 2.1
+
+executors:
+  working_directory: ~/workspace
+  docker:
+    - image: cimg/node:14.18.0
+      environment:
+        TZ: Asia/Tokyo
+
+commands:
+  # node_modules をキャッシュから復元する。
+  restore_npm:
+    steps:
+      - restore_cache:
+          name: Restore node dependencies
+          key: learn-renovate-node-{{ checksum "package-lock.json" }}
+  # node_modules のキャッシュを作成する。
+  save_npm:
+    steps:
+      - save_cache:
+          name: Cache node dependencies
+          key: learn-renovate-node-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/workspace/node_modules
+  # 依存ライブラリをインストールする。
+  npm_install:
+    steps:
+      - run:
+          name: Execute npm install
+          command: npm ci
+  # ユニットテストを実行する。
+  unit_test:
+    steps:
+      - run:
+          name: Run Jest
+          command: npm run test
+
+jobs:
+  setup:
+    executor: default
+    steps:
+      - checkout
+      - restore_npm
+      - npm_install
+      - save_npm
+  test:
+    executer: default
+    steps:
+      - checkout
+      - restore_npm
+      - npm_install
+      - save_npm
+      - unit_test
+
+workflows:
+  check:
+    jobs:
+      - setup
+      - test
