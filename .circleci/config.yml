@@ -1,26 +1,51 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+executors:
+  working_directory: ~/workspace
+  docker:
+    - image: cimg/node:14.18.0
+      environment:
+        TZ: Asia/Tokyo
+
+commands:
+  # node_modules をキャッシュから復元する。
+  restore_npm:
+    steps:
+      - restore_cache:
+          name: Restore node dependencies
+          key: learn-renovate-node-{{ checksum "package-lock.json" }}
+  # node_modules のキャッシュを作成する。
+  save_npm:
+    steps:
+      - save_cache:
+          name: Cache node dependencies
+          key: learn-renovate-node-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/workspace/node_modules
+  # 依存ライブラリをインストールする。
+  npm_install:
+    steps:
+      - run:
+          name: Execute npm install
+          command: npm ci
+  # ユニットテストを実行する。
+  unit_test:
+    steps:
+      - run:
+          name: Run Jest
+          command: npm run test
+
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+  test:
+    executer: default
     steps:
       - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+      - restore_npm
+      - npm_install
+      - save_npm
+      - unit_test
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  check:
     jobs:
-      - say-hello
+      - test
