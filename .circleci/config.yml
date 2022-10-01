@@ -47,6 +47,6 @@ jobs:
       - unit_test
 
 workflows:
-  my_check:
+  check:
     jobs:
       - my_test
