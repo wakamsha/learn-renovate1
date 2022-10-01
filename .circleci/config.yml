@@ -1,11 +1,12 @@
 version: 2.1
 
 executors:
-  working_directory: ~/workspace
-  docker:
-    - image: cimg/node:14.18.0
-      environment:
-        TZ: Asia/Tokyo
+  default:
+    working_directory: ~/workspace
+    docker:
+      - image: cimg/node:14.18.0
+        environment:
+          TZ: "Asia/Tokyo"
 
 commands:
   # node_modules をキャッシュから復元する。
