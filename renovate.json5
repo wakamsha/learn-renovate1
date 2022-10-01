@@ -16,10 +16,19 @@
     stabilityDays: 2,
   },
   constraints: {
-    node: "/^[0-9]+[24680]\\.[0-9]+\\.0$/",
+    node: "/^\\d*[24680]\\.[0-9]+\\.0$/",
   },
 
   packageRules: [
+    {
+      groupName: "Node.js",
+      matchPackageNames: ["node"],
+      // この正規表現は､下記を表す。
+      // - Major: 偶数のみ
+      // - Minor: 全て対象
+      // - Patch: 0 のみ対象
+      allowedVersions: "/^\\d*[24680]\\.[0-9]+\\.0$/",
+    },
     {
       groupName: "Jest",
       matchPackagePatterns: ["jest"],
