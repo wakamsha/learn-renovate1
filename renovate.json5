@@ -13,8 +13,16 @@
   patch: {
     stabilityDays: 2,
   },
-  constraints: {
-    node: "/^\\d*[24680]\\.[0-9]+\\.0$/",
+  // constraints: {
+  //   node: "/^\\d*[24680]\\.[0-9]+\\.0$/",
+  //   patch: {
+  //     enabled: false,
+  //   },
+  // },
+  node: {
+    patch: {
+      enabled: false,
+    },
   },
 
   packageRules: [
