@@ -19,11 +19,6 @@
   //     enabled: false,
   //   },
   // },
-  node: {
-    patch: {
-      enabled: false,
-    },
-  },
 
   packageRules: [
     {
