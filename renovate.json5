@@ -28,7 +28,7 @@
   packageRules: [
     {
       groupName: "Node.js",
-      matchPackageNames: ["node"],
+      matchPackageNames: ["node", "cimg/node", "node-version"],
       // この正規表現は､下記を表す。
       // - Major: 偶数のみ
       // - Minor: 全て対象
