@@ -29,7 +29,7 @@
     {
       groupName: "Node.js",
       matchPackageNames: ["cimg/node"],
-      matchDatasources: ["docker"],
+      matchDatasources: ["node"],
       // この正規表現は､下記を表す。
       // - Major: 偶数のみ
       // - Minor: 全て対象
