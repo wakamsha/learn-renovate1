@@ -33,7 +33,7 @@
       // - Major: 偶数のみ
       // - Minor: 全て対象
       // - Patch: 0 のみ対象
-      allowedVersions: "/^\\d*[24680]\\.[0-9]+\\.0$/",
+      // allowedVersions: "/^\\d*[24680]\\.[0-9]+\\.0$/",
     },
     {
       groupName: "Jest",
