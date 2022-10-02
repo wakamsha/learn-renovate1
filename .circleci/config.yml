@@ -4,7 +4,7 @@ executors:
   default:
     working_directory: ~/workspace
     docker:
-      - image: cimg/node:14.20.1
+      - image: cimg/node:18.9.1
         environment:
           TZ: "Asia/Tokyo"
 
