@@ -28,7 +28,8 @@
   packageRules: [
     {
       groupName: "Node.js",
-      matchPackageNames: ["node", "cimg/node"],
+      matchPackageNames: ["cimg/node"],
+      matchDatasources: ["docker"],
       // この正規表現は､下記を表す。
       // - Major: 偶数のみ
       // - Minor: 全て対象
