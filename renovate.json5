@@ -22,8 +22,8 @@
 
   packageRules: [
     {
-      groupName: "Node.js",
-      extends: ["packages:nodeJs"],
+      groupName: "nodeJs",
+      extends: ["packages:test"],
       matchPackageNames: ["cimg/node"],
       matchDatasources: ["docker"],
       // この正規表現は､下記を表す。
