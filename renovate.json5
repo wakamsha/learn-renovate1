@@ -25,7 +25,7 @@
       groupName: "nodeJs",
       extends: ["group:nodeJs"],
       matchDatasources: ["docker"],
-      matchPackageNames: ["cimg/node"],
+      matchPackageNames: ["node", "cimg/node"],
       // この正規表現は､下記を表す。
       // - Major: 偶数のみ
       // - Minor: 全て対象
